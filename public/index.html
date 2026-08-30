@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Cyberdek Atlas — diretório curado para pesquisa aberta, segurança e análise." />
+    <title>CYBERDEK // ATLAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="wordmark" href="#top" aria-label="Cyberdek Atlas home"><span>CYBER</span>DEK <i>//</i> ATLAS</a>
+      <nav aria-label="Navegação principal">
+        <a href="#directory">Diretório</a>
+        <a href="#protocol">Protocolo</a>
+        <button id="favorites-toggle" class="plain-button" type="button">Salvos <span id="saved-count">0</span></button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="pulse"></span> OPEN RESEARCH DIRECTORY / v1.0</p>
+          <h1 id="hero-title">Encontre o sinal.<br /><em>Documente o contexto.</em></h1>
+          <p class="lede">Um atlas operacional de fontes públicas para pesquisa, geografia, segurança, mídia e infraestrutura. Feito para investigação legítima — com rastreabilidade, não espetáculo.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#directory">Explorar atlas <span>↓</span></a>
+            <button id="random-link" class="button secondary" type="button">Abrir um sinal <span>↗</span></button>
+          </div>
+        </div>
+        <div class="orbital-card" aria-label="Mapa conceitual do fluxo de pesquisa">
+          <div class="orbital-grid"></div>
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <span class="node n1"></span><span class="node n2"></span><span class="node n3"></span>
+          <div class="orbital-label label-a">SOURCE</div><div class="orbital-label label-b">CONTEXT</div><div class="orbital-label label-c">EVIDENCE</div>
+          <p class="coordinate">-20.5382° / -47.4009°<br /><span>ATLAS ONLINE</span></p>
+        </div>
+      </section>
+
+      <section class="telemetry" aria-label="Resumo do acervo">
+        <div><span id="public-count">—</span><small>fontes catalogadas</small></div>
+        <div><span id="category-count">—</span><small>domínios de pesquisa</small></div>
+        <div><span>CC0</span><small>origem preservada</small></div>
+        <div><span>LOCAL</span><small>salvos no navegador</small></div>
+      </section>
+
+      <section id="directory" class="directory" aria-labelledby="directory-title">
+        <div class="section-heading"><div><p class="eyebrow">01 / DIRECTORY</p><h2 id="directory-title">Navegação por intenção</h2></div><p id="result-summary" class="result-summary" aria-live="polite">Carregando inventário…</p></div>
+        <div class="controls">
+          <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Pesquisar ferramenta, domínio ou categoria" autocomplete="off" /></label>
+          <button id="clear-filters" class="clear" type="button" hidden>Limpar filtros</button>
+        </div>
+        <div id="category-chips" class="chips" aria-label="Filtrar por categoria"></div>
+        <div id="cards" class="cards"></div>
+        <button id="load-more" class="load-more" type="button" hidden>Carregar mais fontes</button>
+      </section>
+
+      <section id="protocol" class="protocol" aria-labelledby="protocol-title">
+        <div class="section-heading"><div><p class="eyebrow">02 / PROTOCOL</p><h2 id="protocol-title">Pesquisa responsável</h2></div></div>
+        <div class="protocol-grid">
+          <article><span>01</span><h3>Defina o propósito</h3><p>Pesquise uma questão legítima e proporcional. Não use o atlas para vigilância, assédio, fraude ou coleta indiscriminada de dados pessoais.</p></article>
+          <article><span>02</span><h3>Verifique a fonte</h3><p>Todo link é uma referência, não uma garantia. Confirme autoria, data, licença, escopo e termos antes de confiar ou reutilizar dados.</p></article>
+          <article><span>03</span><h3>Registre evidência</h3><p>Salve contexto, URL, data e limitações. Uma conclusão útil precisa poder ser revisada, não apenas parecer convincente.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>CYBERDEK ATLAS / <span id="year"></span></span>
+      <span>Fonte preservada: <a href="https://start.me/p/L1rEYQ/osint4all" target="_blank" rel="noopener noreferrer">OSINT4ALL</a> · CC0 mirror</span>
+    </footer>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
