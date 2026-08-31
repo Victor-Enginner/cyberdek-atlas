@@ -2,6 +2,17 @@ const state = { catalog: [], activeCategory: 'ALL', query: '', favoritesOnly: fa
 const $ = (selector) => document.querySelector(selector);
 const cards = $('#cards');
 const chips = $('#category-chips');
+const repoCards = $('#repo-cards');
+const repoState = { query: '', risk: 'Todos', catalog: [
+  ['CYBERDEK ATLAS','~/cyberdek-atlas','Painel local','Baixo','Pronto para usar','cd ~/cyberdek-atlas && npm run serve','Interface visual local para organizar seu aprendizado.'],
+  ['Anubis','~/Anubis','Enumeração de subdomínios','Médio','Requer dependências Python','cd ~/Anubis && anubis --help','Use somente em domínios seus ou autorizados.'],
+  ['dirsearch','~/dirsearch','Teste de caminhos web','Médio','Requer Python 3.11+','cd ~/dirsearch && python3 dirsearch.py --help','Pode gerar muitas requisições; use apenas em laboratório.'],
+  ['XSStrike','~/XSStrike','Detecção XSS','Alto','Requer dependências Python','cd ~/XSStrike && python xsstrike.py --help','Ferramenta de alto impacto: não use sem autorização.'],
+  ['Commix','~/commix','Teste de injeção','Alto','Use apenas em laboratório','cd ~/commix && python commix.py -h','Prioridade alta de risco; comece apenas pela documentação.'],
+  ['AllHackingTools','~/AllHackingTools','Agregador de ferramentas','Alto','Revisar antes de executar',"cd ~/AllHackingTools && sed -n '1,160p' README.md",'Não execute o menu automaticamente; revise instalações e evite ações de ataque.'],
+  ['DarkFly-Tool','~/DarkFly-Tool','Agregador legado','Alto','Legado: usa Python 2',"cd ~/DarkFly-Tool && sed -n '1,140p' README.md",'Não recomendado: não instale Python 2 para executá-lo.'],
+  ['Termux-Kali','~/Termux-Kali','Ambiente Linux','Médio','Revisar compatibilidade',"cd ~/Termux-Kali && sed -n '1,160p' README.md",'Leia o script e confirme espaço em disco antes de instalar.']
+] };
 
 const hostFromUrl = (url) => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; } };
 const persist = () => { localStorage.setItem('cyberdek-favorites', JSON.stringify([...state.favorites])); $('#saved-count').textContent = state.favorites.size; };
@@ -35,11 +46,17 @@ function render() {
   $('#load-more').hidden = visible.length >= list.length; $('#clear-filters').hidden = state.activeCategory === 'ALL' && !state.query && !state.favoritesOnly;
 }
 
+function renderRepos() {
+  const list = repoState.catalog.filter(([name,, category, risk, status]) => `${name} ${category} ${risk} ${status}`.toLowerCase().includes(repoState.query) && (repoState.risk === 'Todos' || repoState.risk === risk));
+  $('#risk-chips').replaceChildren(...['Todos','Baixo','Médio','Alto'].map((risk) => { const b = document.createElement('button'); b.type = 'button'; b.className = `chip ${risk === repoState.risk ? 'active' : ''}`; b.textContent = risk; b.addEventListener('click', () => { repoState.risk = risk; renderRepos(); }); return b; })); repoCards.replaceChildren(...list.map(([name,path,category,risk,status,command,note]) => { const c=document.createElement('article'); c.className='repo-card'; c.innerHTML=`<p class="repo-meta risk-${risk.toLowerCase().replace('é','e')}">RISCO ${risk.toUpperCase()} · ${category}</p><h3>${name}</h3><p class="repo-location">${path} · ${status}</p><code class="repo-command"></code><p class="repo-note">Nota: ${note}</p>`; c.querySelector('code').textContent=command; return c; })); $('#repo-summary').textContent = `${list.length} repositório${list.length === 1 ? '' : 's'} no mapa`;
+}
 $('#search').addEventListener('input', (event) => { state.query = event.target.value.trim().toLowerCase(); state.visible = 24; render(); });
 $('#clear-filters').addEventListener('click', () => { state.activeCategory = 'ALL'; state.query = ''; state.favoritesOnly = false; state.visible = 24; $('#search').value = ''; render(); });
 $('#favorites-toggle').addEventListener('click', () => { state.favoritesOnly = !state.favoritesOnly; state.visible = 24; $('#favorites-toggle').classList.toggle('active', state.favoritesOnly); render(); document.querySelector('#directory').scrollIntoView({ behavior: 'smooth' }); });
 $('#load-more').addEventListener('click', () => { state.visible += 48; render(); });
 $('#random-link').addEventListener('click', () => { const entry = state.catalog[Math.floor(Math.random() * state.catalog.length)]; window.open(entry.url, '_blank', 'noopener,noreferrer'); });
+$('#repo-search').addEventListener('input', (event) => { repoState.query = event.target.value.trim().toLowerCase(); renderRepos(); });
 
 const [catalog, manifest] = await Promise.all([fetch('./catalog.json').then((r) => r.json()), fetch('./manifest.json').then((r) => r.json())]);
+renderRepos();
 state.catalog = catalog; $('#public-count').textContent = manifest.inventory.publicCatalog.toLocaleString('pt-BR'); $('#category-count').textContent = manifest.inventory.headings; $('#year').textContent = new Date().getFullYear(); persist(); render();

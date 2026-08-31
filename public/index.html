@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Cyberdek Atlas — diretório curado para pesquisa aberta, segurança e análise." />
-    <title>CYBERDEK // ATLAS</title>
+    <meta name="description" content="CARTEL 576 — sistema operacional local para aprendizado no Termux." />
+    <title>CARTEL 576 // LOCAL OS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -13,8 +13,9 @@
   <body>
     <div class="noise" aria-hidden="true"></div>
     <header class="topbar">
-      <a class="wordmark" href="#top" aria-label="Cyberdek Atlas home"><span>CYBER</span>DEK <i>//</i> ATLAS</a>
+      <a class="wordmark" href="#top" aria-label="CARTEL 576 home"><span>CARTEL</span> <i>576</i> // LOCAL OS</a>
       <nav aria-label="Navegação principal">
+        <a href="#termux-lab">Meu Termux</a>
         <a href="#directory">Diretório</a>
         <a href="#protocol">Protocolo</a>
         <button id="favorites-toggle" class="plain-button" type="button">Salvos <span id="saved-count">0</span></button>
@@ -24,9 +25,9 @@
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="pulse"></span> OPEN RESEARCH DIRECTORY / v1.0</p>
-          <h1 id="hero-title">Encontre o sinal.<br /><em>Documente o contexto.</em></h1>
-          <p class="lede">Um atlas operacional de fontes públicas para pesquisa, geografia, segurança, mídia e infraestrutura. Feito para investigação legítima — com rastreabilidade, não espetáculo.</p>
+          <p class="eyebrow"><span class="pulse"></span> CARTEL 576 / TERMUX LOCAL OS</p>
+          <h1 id="hero-title">Seu ambiente.<br /><em>Seu contexto.</em></h1>
+          <p class="lede">Um cockpit pessoal para entender o que está instalado, aprender cada ferramenta e relacionar conhecimento, comandos e práticas seguras no seu próprio Termux.</p>
           <div class="hero-actions">
             <a class="button primary" href="#directory">Explorar atlas <span>↓</span></a>
             <button id="random-link" class="button secondary" type="button">Abrir um sinal <span>↗</span></button>
@@ -46,6 +47,18 @@
         <div><span id="category-count">—</span><small>domínios de pesquisa</small></div>
         <div><span>CC0</span><small>origem preservada</small></div>
         <div><span>LOCAL</span><small>salvos no navegador</small></div>
+      </section>
+
+      <section id="termux-lab" class="termux-lab" aria-labelledby="termux-lab-title">
+        <div class="section-heading"><div><p class="eyebrow">01 / MY TERMUX</p><h2 id="termux-lab-title">Laboratório local</h2></div><p id="repo-summary" class="result-summary">Lendo inventário local…</p></div>
+        <p class="lab-lede">Comece pela documentação e pela ajuda de cada ferramenta. Testes somente em sistemas seus ou autorizados.</p>
+        <div class="positioning">
+          <article><span>01</span><h3>Localize-se</h3><code>cd ~ && pwd && ls</code><p><code>~</code> é sua pasta inicial no Termux.</p></article>
+          <article><span>02</span><h3>Leia antes</h3><code>sed -n '1,160p' README.md</code><p>Confira dependências, licença e manutenção.</p></article>
+          <article><span>03</span><h3>Ajuda local</h3><code>python3 ferramenta.py --help</code><p>Use laboratório controlado; nunca um alvo sem autorização.</p></article>
+        </div>
+        <div class="lab-controls"><label class="search"><span>⌕</span><input id="repo-search" type="search" placeholder="Pesquisar repositório, categoria ou risco" autocomplete="off" /></label><div id="risk-chips" class="chips"></div></div>
+        <div id="repo-cards" class="repo-cards"></div>
       </section>
 
       <section id="directory" class="directory" aria-labelledby="directory-title">
