@@ -1,6 +1,6 @@
 {
   "schema": "cyberdek.atlas/archive-manifest/v1",
-  "generatedAt": "2026-08-31T14:21:57.011Z",
+  "generatedAt": "2026-08-31T15:12:46.803Z",
   "source": {
     "startMe": "https://start.me/p/L1rEYQ/osint4all",
     "mirror": "https://github.com/osint4all/osint4all.github.io",
@@ -9,8 +9,8 @@
   },
   "inventory": {
     "totalCollected": 1454,
-    "publicCatalog": 1324,
-    "reviewRequired": 130,
+    "publicCatalog": 1327,
+    "reviewRequired": 127,
     "headings": 76
   },
   "categories": {
@@ -26,7 +26,7 @@
     "CRYPTOCURRENCY": 11,
     "DATASET": 14,
     "DISCORD": 13,
-    "DOMAIN / IP / DNS": 49,
+    "DOMAIN / IP / DNS": 50,
     "DORKING": 7,
     "DOWNLOADER": 9,
     "EMAIL": 23,
@@ -56,7 +56,7 @@
     "PHONE": 27,
     "POLICE / LE / FED": 42,
     "PRIVACY / SECURITY": 22,
-    "PRODUCTIVITY": 56,
+    "PRODUCTIVITY": 57,
     "PUBLIC RECORDS": 46,
     "RADIO": 18,
     "REAL ESTATE": 10,
@@ -74,7 +74,7 @@
     "THREAT INTEL": 17,
     "THROWAWAY CONTACT": 15,
     "TIKTOK": 3,
-    "TOOLSET": 35,
+    "TOOLSET": 36,
     "TWITCH": 13,
     "TWITTER": 39,
     "UNIFIED SEARCH": 13,

@@ -10,6 +10,9 @@ const restrictedCategories = new Set([
   'INFORMANT', 'SEX OFFENDER', 'RESIDENT DATABASE', 'DARKNET',
 ]);
 const restrictedTerms = /(?:fake|generator|dump|breach|leak|credit card|ssn|driver.?s license|passport|credential|password|dox|exploit)/i;
+// Manually reviewed for lawful, defensive or general-purpose public use.
+const reviewedPublicUrls = new Set(['https://skyzh.github.io/zoom-url-generator/', 'https://www.rempe.us/diceware/#eff', 'https://ipleak.net/']);
+
 
 let category = 'UNSORTED';
 let ordinal = 0;
@@ -32,7 +35,7 @@ for (const rawLine of markdown.split(/\r?\n/)) {
     title: title.trim(),
     url,
     category,
-    access: restricted ? 'review' : 'catalog',
+    access: restricted && !reviewedPublicUrls.has(url) ? 'review' : 'catalog',
     source: 'OSINT4ALL public CC0 archive',
   });
 }
